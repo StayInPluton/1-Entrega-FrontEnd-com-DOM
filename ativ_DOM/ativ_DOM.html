@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food</title>
+    <style>
+       *,*::before,*::after{box-sizing:border-box;}
+        body{margin:1em;}header h1{margin-bottom: 1em;}
+      header{
+        color: rgb(185, 185, 4);
+          background-color: #447923;
+          opacity: 95%;
+          width:60.8em ;
+         margin-bottom: 5em;
+         margin-left:13em ;
+         border-bottom:3px solid #9ec412;
+         border-top:2px solid #b0c31b;
+      }
+      body{
+        background-image: url("papel.jpg");
+      }
+      .inp{
+         
+         width:40.80em;
+         height: 50em;
+         margin-bottom: 4em;
+         margin-left:20em ;
+        background-color:rgba(255, 255, 255, 0.816);   
+	         
+      }
+.but{
+  height:2em ;
+  width: 2em;
+  background-image: url("confir.svg");
+  border-radius: 20%;
+  background-repeat: no-repeat;  
+  position:relative ;
+
+}
+.but1{
+  height:2em ;
+  width: 2em;
+  background-image: url("edit.svg");
+  border-radius: 20%;
+  background-repeat: no-repeat; 
+  position:relative ;
+}
+
+    </style>
+</head>
+<body>
+    <section class="flex-container">
+        <header><h1 align="center"> 𝓕𝓪𝓼𝓽 𝓯𝓸𝓸𝓭</h1></header>
+    </section>
+    <section class="inp" >
+        <input type="text" id="input">
+        <button class="but" onclick="addText()"></button>
+        <button class="but1" type="submit" id="mudar"></button>
+        <div id="pedidos"></div>
+    </section>
+    <script>
+    function addText() {
+        var inputText = document.getElementById("input").value;
+        var listaPedidos = document.createElement("li"); 
+        var textNode = document.createTextNode(inputText);
+        var deletar = document.createElement("button"); 
+        var editar= document.createElement("button"); 
+        
+        deletar.innerHTML = "Remover";
+        editar.innerHTML = "Editar";
+        
+        deletar.onclick = function() { 
+          listaPedidos.parentNode.removeChild(listaPedidos); 
+        }
+        
+        editar.onclick = function() { 
+          document.getElementById("input").value = textNode.nodeValue; 
+          document.getElementById("mudar").onclick = function() { 
+            var newText = document.getElementById("input").value;
+            if (newText !== "") {
+              textNode.nodeValue = newText; 
+              document.getElementById("input").value = "";
+            }
+          }
+        }
+        
+        listaPedidos.appendChild(textNode); 
+        listaPedidos.appendChild(deletar); 
+        listaPedidos.appendChild(editar); 
+        
+        document.getElementById("pedidos").appendChild(listaPedidos); 
+        document.getElementById("innput").value = ""; 
+      }
+    </script>
+      
+</body>
+</html>
